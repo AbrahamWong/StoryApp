@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Story App</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="story_detail_seconds">Posted seconds ago</string>
+    <string name="story_detail_minutes">Posted %d minutes ago</string>
+    <string name="story_detail_hours">Posted %d hours ago</string>
+    <string name="story_detail_days">Posted %d days ago</string>
+    <string name="story_detail_months">Posted %d months ago</string>
+    <string name="logout">Logout</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="description">Description</string>
+    <string name="upload">Upload</string>
+    <string name="e_mail">E-mail</string>
+    <string name="email_hint">Enter your email</string>
+    <string name="password">Password</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="name_hint">Enter your name</string>
+    <string name="register">Register</string>
+    <string name="welcome">Welcome to Story App!</string>
+    <string name="welcome_message">Check other\'s success stories in learning here!</string>
+</resources>

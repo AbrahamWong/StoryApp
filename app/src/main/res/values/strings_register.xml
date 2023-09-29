@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register_now">Register now</string>
+    <string name="register_message">to read and write your success stories.</string>
+    <string name="register_already_user">Already have an account?</string>
+    <string name="to_login">Login.</string>
+</resources>

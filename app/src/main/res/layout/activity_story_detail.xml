@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.StoryDetailActivity">
+
+    <ImageView
+        android:id="@+id/iv_detail_photo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:transitionName="photo"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/img_welcome"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_detail_time"
+        style="@style/B3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_12dp"
+        android:textColor="@color/neutral70"
+        android:transitionName="name"
+        app:layout_constraintTop_toBottomOf="@id/iv_detail_photo"
+        tools:text="@string/story_detail_seconds" />
+
+    <TextView
+        android:id="@+id/tv_detail_name"
+        style="@style/H3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_12dp"
+        android:textColor="@color/neutral70"
+        android:transitionName="name"
+        app:layout_constraintTop_toBottomOf="@id/tv_detail_time"
+        tools:text="Lorem ipsum dolor sit amet" />
+
+    <TextView
+        android:id="@+id/tv_detail_description"
+        style="@style/B2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_12dp"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:textColor="@color/neutral70"
+        android:transitionName="description"
+        app:layout_constraintTop_toBottomOf="@id/tv_detail_name"
+        tools:text="Lorem ipsum dolor sit amet" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

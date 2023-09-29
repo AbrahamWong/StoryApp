@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextRegular">
+        <item name="fontFamily">@font/inter</item>
+    </style>
+
+    <style name="TextMedium">
+        <item name="fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="TextBold">
+        <item name="fontFamily">@font/inter_bold</item>
+    </style>
+
+    <!-- text styles -->
+    <style name="H1" parent="TextBold">
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="H2" parent="TextBold">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="H3" parent="TextBold">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="H4" parent="TextBold">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="H5" parent="TextBold">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="H6" parent="TextBold">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="B1" parent="TextRegular">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="B2" parent="TextRegular">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="B3" parent="TextRegular">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="B4" parent="TextRegular">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_description">where our success stories met.</string>
+    <string name="login_no_account">Don\'t have an account?</string>
+    <string name="to_register">Register here.</string>
+</resources>
