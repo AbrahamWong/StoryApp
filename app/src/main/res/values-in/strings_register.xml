@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register_now">Daftar sekarang</string>
+    <string name="register_message">untuk membaca dan menuliskan cerita suksesmu.</string>
+    <string name="register_already_user">Sudah punya akun?</string>
+    <string name="to_login">Masuk.</string>
+</resources>

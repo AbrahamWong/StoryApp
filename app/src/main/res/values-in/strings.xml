@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Story App</string>
+    <string name="lorem_ipsum">Lorem Ipsum hanyalah teks tiruan dari industri percetakan dan penyusunan huruf. Lorem Ipsum telah menjadi teks tiruan standar industri sejak tahun 1500-an, ketika seorang pencetak yang tidak dikenal mengambil sekumpulan huruf dan mengacaknya untuk membuat buku contoh huruf. Lorem Ipsum tidak hanya bertahan selama lima abad, tetapi juga menjadi lompatan ke penyusunan huruf elektronik, pada dasarnya tidak berubah. Lorem Ipsum dipopulerkan pada tahun 1960-an dengan dirilisnya lembaran Letraset yang berisi bagian-bagian Lorem Ipsum, dan baru-baru ini dengan perangkat lunak penerbitan desktop seperti Aldus PageMaker yang menyertakan berbagai versi Lorem Ipsum.</string>
+
+    <string name="story_detail_seconds">Dipost beberapa detik yang lalu</string>
+    <string name="story_detail_minutes">Dipost %d menit yang lalu</string>
+    <string name="story_detail_hours">Dipost %d jam yang lalu</string>
+    <string name="story_detail_days">Dipost %d hari yang lalu</string>
+    <string name="story_detail_months">Dipost %d bulan yang lalu</string>
+    <string name="logout">Keluar</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="description">Deskripsi</string>
+    <string name="upload">Unggah</string>
+    <string name="e_mail">E-mail</string>
+    <string name="email_hint">Masukkan alamat email anda</string>
+    <string name="password">Kata Sandi</string>
+    <string name="password_hint">Masukkan kata sandi anda</string>
+    <string name="login">Masuk</string>
+    <string name="name">Nama</string>
+    <string name="name_hint">Masukkan nama anda</string>
+    <string name="register">Daftar</string>
+    <string name="welcome">Selamat datang ke Story App!</string>
+    <string name="welcome_message">Lihat cerita sukses belajar orang-orang disini!</string>
+</resources>

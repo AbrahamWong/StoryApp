@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_description">dimana cerita sukses kita bertemu.</string>
+    <string name="login_no_account">Tidak punya akun?</string>
+    <string name="to_register">Daftar disini.</string>
+</resources>
