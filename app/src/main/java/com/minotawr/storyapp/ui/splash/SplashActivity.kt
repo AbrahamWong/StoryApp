@@ -8,7 +8,6 @@ import com.minotawr.storyapp.ui.home.HomeActivity
 import com.minotawr.storyapp.ui.welcome.WelcomeActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,15 +17,13 @@ class SplashActivity : BaseStoryActivity<ActivitySplashBinding>() {
         get() = ActivitySplashBinding::inflate
 
     private val viewModel: SplashViewModel by viewModel()
-    private val job = Job()
-    private val scope = CoroutineScope(Dispatchers.Main + job)
 
     override fun setup() {
         loadData()
     }
 
     private fun loadData() {
-        scope.launch { checkLogin() }
+        CoroutineScope(Dispatchers.Main).launch { checkLogin() }
     }
 
     private suspend fun checkLogin() {

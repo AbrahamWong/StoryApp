@@ -1,6 +1,7 @@
 package com.minotawr.storyapp.ui.home
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -70,6 +71,12 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
                     .create()
                     .show()
 
+                true
+            }
+
+            R.id.action_language -> {
+                val settingIntent = Intent(android.provider.Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(settingIntent)
                 true
             }
 

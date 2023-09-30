@@ -23,4 +23,5 @@
     <string name="register">Daftar</string>
     <string name="welcome">Selamat datang ke Story App!</string>
     <string name="welcome_message">Lihat cerita sukses belajar orang-orang disini!</string>
+    <string name="change_language">Ubah Bahasa</string>
 </resources>

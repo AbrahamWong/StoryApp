@@ -36,6 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.welcome.WelcomeActivity"
+            android:launchMode="singleTop"
             android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"
@@ -43,6 +44,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.home.HomeActivity"
+            android:launchMode="singleTop"
             android:exported="false" />
 
         <provider

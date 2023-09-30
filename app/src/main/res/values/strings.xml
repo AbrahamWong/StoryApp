@@ -22,4 +22,5 @@
     <string name="register">Register</string>
     <string name="welcome">Welcome to Story App!</string>
     <string name="welcome_message">Check other\'s success stories in learning here!</string>
+    <string name="change_language">Change Language</string>
 </resources>
