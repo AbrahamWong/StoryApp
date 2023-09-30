@@ -9,6 +9,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
@@ -26,11 +27,8 @@ abstract class BaseLocalDataSource<T>(protected val dataStore: DataStore<Prefere
         }
     }
 
-    open fun get(): Flow<T?> = dataStore.data.map { preference ->
-        val json = preference.get(preferenceKey)
-        if (json == null)
-            null
-        else value(preference[preferenceKey]!!)
+    open fun get(): Flow<T?> = flow {
+        emit(getCached())
     }
 
     open fun getCached(): T? = runBlocking {

@@ -32,7 +32,7 @@ class StoryRepository(
                 storyLocalDataSource.get().map { StoryMapper.storyListEntityToModel(it) }
 
             override fun shouldUseRemoteData(cachedData: List<Story>?): Boolean =
-                cachedData == null
+                true
 
             override suspend fun createCall(): Resource<StoryListResponse> =
                 storyRemoteDataSource.getStories()
