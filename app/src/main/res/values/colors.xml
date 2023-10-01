@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
 
     <color name="neutral10">#e9e9e9</color>
-    <color name="neutral20">#d9d9d9</color>
-    <color name="neutral30">#c4c4c4</color>
-    <color name="neutral40">#9d9d9d</color>
     <color name="neutral50">#7b7b7b</color>
     <color name="neutral60">#555555</color>
     <color name="neutral70">#434343</color>

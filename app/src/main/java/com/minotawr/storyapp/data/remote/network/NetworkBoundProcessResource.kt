@@ -20,7 +20,6 @@ abstract class NetworkBoundProcessResource<ResultType, RequestType> {
                     emit(Resource.Failed(response.message))
                 }
             }
-            // is Resource.Unauthorized -> TODO()
 
             else -> {
                 emit(Resource.Failed(response.message))

@@ -32,7 +32,6 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                         )
                     }
                 }
-                // is Resource.Unauthorized -> TODO()
 
                 else -> {
                     emitAll(

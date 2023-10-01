@@ -2,6 +2,7 @@ package com.minotawr.storyapp.ui.splash
 
 import android.content.Intent
 import android.view.LayoutInflater
+import androidx.lifecycle.lifecycleScope
 import com.minotawr.storyapp.databinding.ActivitySplashBinding
 import com.minotawr.storyapp.ui.base.BaseStoryActivity
 import com.minotawr.storyapp.ui.home.HomeActivity
@@ -23,7 +24,7 @@ class SplashActivity : BaseStoryActivity<ActivitySplashBinding>() {
     }
 
     private fun loadData() {
-        CoroutineScope(Dispatchers.Main).launch { checkLogin() }
+        lifecycleScope.launch { checkLogin() }
     }
 
     private suspend fun checkLogin() {

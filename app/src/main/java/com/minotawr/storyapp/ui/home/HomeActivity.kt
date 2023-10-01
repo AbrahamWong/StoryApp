@@ -44,7 +44,7 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
 
         setupView()
         setupListener()
-        loadData()      // TODO: why this triggered after returning from StoryDetailActivity
+        loadData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
