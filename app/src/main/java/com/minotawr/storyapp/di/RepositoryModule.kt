@@ -13,8 +13,8 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
     single { AuthLocalDataSource(get()) }
-    single { StoryLocalDataSource(get()) }
-    single { StoryDetailLocalDataSource(get()) }
+    // single { StoryLocalDataSource(get()) }
+    // single { StoryDetailLocalDataSource(get()) }
 
     single { AuthRemoteDataSource(get()) }
     single { StoryRemoteDataSource(get()) }
@@ -24,6 +24,6 @@ val repositoryModule = module {
     }
 
     single<IStoryRepository> {
-        StoryRepository(get(), get(), get())
+        StoryRepository(get(), get())
     }
 }

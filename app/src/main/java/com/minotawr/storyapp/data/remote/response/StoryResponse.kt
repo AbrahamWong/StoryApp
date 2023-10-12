@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class StoryResponse(
     @field:SerializedName("id")
-    val id: String? = null,
+    val id: String,
 
     @field:SerializedName("name")
     val name: String? = null,

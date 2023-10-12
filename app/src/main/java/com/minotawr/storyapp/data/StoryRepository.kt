@@ -1,7 +1,10 @@
 package com.minotawr.storyapp.data
 
+import android.util.Log
+import androidx.lifecycle.asFlow
 import com.minotawr.storyapp.data.local.StoryDetailLocalDataSource
 import com.minotawr.storyapp.data.local.StoryLocalDataSource
+import com.minotawr.storyapp.data.local.dao.StoryDao
 import com.minotawr.storyapp.data.remote.StoryRemoteDataSource
 import com.minotawr.storyapp.data.remote.network.BaseStoryResponse
 import com.minotawr.storyapp.data.remote.network.NetworkBoundProcessResource
@@ -22,14 +25,15 @@ import java.io.File
 
 class StoryRepository(
     private val storyRemoteDataSource: StoryRemoteDataSource,
-    private val storyLocalDataSource: StoryLocalDataSource,
-    private val storyDetailLocalDataSource: StoryDetailLocalDataSource,
+    private val storyDao: StoryDao
+    // private val storyLocalDataSource: StoryLocalDataSource,
+    // private val storyDetailLocalDataSource: StoryDetailLocalDataSource,
 ) : IStoryRepository {
 
     override fun getStories(): Flow<Resource<List<Story>?>> =
         object: NetworkBoundResource<List<Story>?, StoryListResponse>() {
             override fun getCached(): Flow<List<Story>?> =
-                storyLocalDataSource.get().map { StoryMapper.storyListEntityToModel(it) }
+                storyDao.getAllStory().asFlow().map { StoryMapper.storyListEntityToModel(it) }
 
             override fun shouldUseRemoteData(cachedData: List<Story>?): Boolean =
                 true
@@ -39,14 +43,19 @@ class StoryRepository(
 
             override suspend fun saveCallResult(data: StoryListResponse) {
                 val result = StoryMapper.storyListResponseToEntity(data)
-                storyLocalDataSource.save(result)
+
+                if (result != null) {
+                    storyDao.deleteStoryList()
+                    storyDao.insertStoryList(result)
+                }
             }
         }.asFlow()
 
     override fun getStoryDetail(id: String): Flow<Resource<Story?>> =
         object : NetworkBoundResource<Story?, StoryDetailResponse>() {
             override fun getCached(): Flow<Story?> =
-                storyDetailLocalDataSource.get(id).map { StoryMapper.storyEntityToModel(it) }
+                // storyDetailLocalDataSource.get(id).map { StoryMapper.storyEntityToModel(it) }
+                storyDao.getStoryDetail(id).asFlow().map { StoryMapper.storyEntityToModel(it) }
 
             override fun shouldUseRemoteData(cachedData: Story?): Boolean = cachedData == null
 
@@ -55,7 +64,11 @@ class StoryRepository(
 
             override suspend fun saveCallResult(data: StoryDetailResponse) {
                 val result = StoryMapper.storyResponseToEntity(data)
-                storyDetailLocalDataSource.save(id, result)
+
+                if (result != null) {
+                    storyDao.insertStory(result)
+                    Log.d(StoryRepository::class.java.simpleName, "saveCallResult: success")
+                }
             }
 
         }.asFlow()
