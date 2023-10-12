@@ -21,6 +21,7 @@ import com.minotawr.storyapp.ui.detail.StoryDetailActivity
 import com.minotawr.storyapp.ui.home.adapter.HomeAdapter
 import com.minotawr.storyapp.ui.home.adapter.HomeAdapterDelegate
 import com.minotawr.storyapp.ui.home.adapter.HomeViewHolder
+import com.minotawr.storyapp.ui.map.MapsStoryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
@@ -110,6 +111,10 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
 
         toolbarBinding.fabAdd.setOnClickListener {
             storyLauncher.launch(Intent(this, AddStoryActivity::class.java))
+        }
+
+        toolbarBinding.fabMap.setOnClickListener {
+            startActivity(Intent(this, MapsStoryActivity::class.java))
         }
     }
 

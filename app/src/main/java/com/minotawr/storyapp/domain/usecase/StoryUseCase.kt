@@ -7,7 +7,7 @@ import java.io.File
 
 interface StoryUseCase {
 
-    fun getStories(): Flow<Resource<List<Story>?>>
+    fun getStories(page: Int? = null, size: Int? = null, isLocationRequired: Int? = null): Flow<Resource<List<Story>?>>
 
     fun getStoryDetail(id: String): Flow<Resource<Story?>>
 

@@ -7,7 +7,8 @@ import okhttp3.RequestBody
 
 class StoryRemoteDataSource(private val apiService: ApiService) : BaseRemoteDataSource() {
 
-    suspend fun getStories() = getResource { apiService.getStories() }
+    suspend fun getStories(page: Int?, size: Int?, isLocationRequired: Int?) =
+        getResource { apiService.getStories(page, size, isLocationRequired) }
 
     suspend fun getStoryDetail(id: String) = getResource { apiService.getStoryDetail(id) }
 

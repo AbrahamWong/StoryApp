@@ -30,7 +30,7 @@ class StoryRepository(
     // private val storyDetailLocalDataSource: StoryDetailLocalDataSource,
 ) : IStoryRepository {
 
-    override fun getStories(): Flow<Resource<List<Story>?>> =
+    override fun getStories(page: Int?, size: Int?, isLocationRequired: Int?): Flow<Resource<List<Story>?>> =
         object: NetworkBoundResource<List<Story>?, StoryListResponse>() {
             override fun getCached(): Flow<List<Story>?> =
                 storyDao.getAllStory().asFlow().map { StoryMapper.storyListEntityToModel(it) }
@@ -39,7 +39,7 @@ class StoryRepository(
                 true
 
             override suspend fun createCall(): Resource<StoryListResponse> =
-                storyRemoteDataSource.getStories()
+                storyRemoteDataSource.getStories(page, size, isLocationRequired)
 
             override suspend fun saveCallResult(data: StoryListResponse) {
                 val result = StoryMapper.storyListResponseToEntity(data)

@@ -7,7 +7,7 @@ import java.io.File
 
 interface IStoryRepository {
 
-    fun getStories(): Flow<Resource<List<Story>?>>
+    fun getStories(page: Int?, size: Int?, isLocationRequired: Int?): Flow<Resource<List<Story>?>>
 
     fun getStoryDetail(id: String): Flow<Resource<Story?>>
 

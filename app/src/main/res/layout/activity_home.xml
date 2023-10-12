@@ -25,4 +25,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="@string/add_story" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/add_story"
+        android:src="@drawable/ic_map"
+        android:layout_marginBottom="@dimen/dimen_8dp"
+        app:layout_constraintBottom_toTopOf="@id/fab_add"
+        app:layout_constraintEnd_toEndOf="@+id/fab_add"
+        app:layout_constraintStart_toStartOf="@+id/fab_add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
