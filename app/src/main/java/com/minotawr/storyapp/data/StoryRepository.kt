@@ -2,9 +2,13 @@ package com.minotawr.storyapp.data
 
 import android.util.Log
 import androidx.lifecycle.asFlow
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.minotawr.storyapp.data.local.StoryDetailLocalDataSource
 import com.minotawr.storyapp.data.local.StoryLocalDataSource
 import com.minotawr.storyapp.data.local.dao.StoryDao
+import com.minotawr.storyapp.data.remote.StoryPagingSource
 import com.minotawr.storyapp.data.remote.StoryRemoteDataSource
 import com.minotawr.storyapp.data.remote.network.BaseStoryResponse
 import com.minotawr.storyapp.data.remote.network.NetworkBoundProcessResource
@@ -25,6 +29,7 @@ import java.io.File
 
 class StoryRepository(
     private val storyRemoteDataSource: StoryRemoteDataSource,
+    private val storyPagingSource: StoryPagingSource,
     private val storyDao: StoryDao
     // private val storyLocalDataSource: StoryLocalDataSource,
     // private val storyDetailLocalDataSource: StoryDetailLocalDataSource,
@@ -50,6 +55,12 @@ class StoryRepository(
                 }
             }
         }.asFlow()
+
+    override fun getPagedStories(): Flow<PagingData<Story>> =
+        Pager(
+            config = PagingConfig(pageSize = 5),
+            pagingSourceFactory = { storyPagingSource }
+        ).flow
 
     override fun getStoryDetail(id: String): Flow<Resource<Story?>> =
         object : NetworkBoundResource<Story?, StoryDetailResponse>() {

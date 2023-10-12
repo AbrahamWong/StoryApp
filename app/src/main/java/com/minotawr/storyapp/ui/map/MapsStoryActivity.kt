@@ -128,7 +128,7 @@ class MapsStoryActivity : BaseToolbarActivity<ActivityMapsStoryBinding>(), OnMap
             if (story.latitude != null && story.longitude != null) {
                 val latLng = LatLng(story.latitude, story.longitude)
 
-
+                // TODO: Find a way to show story image as circular marker
 
                 mMap.addMarker(
                     MarkerOptions()

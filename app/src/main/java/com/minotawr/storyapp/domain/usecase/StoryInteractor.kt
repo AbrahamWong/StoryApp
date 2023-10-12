@@ -1,5 +1,6 @@
 package com.minotawr.storyapp.domain.usecase
 
+import androidx.paging.PagingData
 import com.minotawr.storyapp.data.remote.network.Resource
 import com.minotawr.storyapp.domain.model.Story
 import com.minotawr.storyapp.domain.repository.IStoryRepository
@@ -12,6 +13,8 @@ class StoryInteractor(
 
     override fun getStories(page: Int?, size: Int?, isLocationRequired: Int?) =
         repository.getStories(page, size, isLocationRequired)
+
+    override fun getPagedStories() = repository.getPagedStories()
 
     override fun getStoryDetail(id: String) = repository.getStoryDetail(id)
 

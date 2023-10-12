@@ -72,6 +72,9 @@ dependencies {
     implementation("androidx.room:room-paging:$versions.room_version")
     testImplementation("androidx.room:room-testing:$versions.room_version")
 
+    // Paging
+    implementation("androidx.paging:paging-runtime-ktx:$versions.paging_version")
+
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle_version"

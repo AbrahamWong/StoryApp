@@ -24,4 +24,5 @@
     <string name="welcome">Selamat datang ke Story App!</string>
     <string name="welcome_message">Lihat cerita sukses belajar orang-orang disini!</string>
     <string name="change_language">Ubah Bahasa</string>
+    <string name="retry">Coba Lagi</string>
 </resources>

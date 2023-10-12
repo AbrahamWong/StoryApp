@@ -1,7 +1,6 @@
 package com.minotawr.storyapp.ui.home
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -12,15 +11,15 @@ import androidx.core.util.Pair
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.minotawr.storyapp.R
-import com.minotawr.storyapp.data.remote.network.Resource
 import com.minotawr.storyapp.databinding.ActivityHomeBinding
 import com.minotawr.storyapp.domain.model.Story
 import com.minotawr.storyapp.ui.add.AddStoryActivity
 import com.minotawr.storyapp.ui.base.BaseToolbarActivity
 import com.minotawr.storyapp.ui.detail.StoryDetailActivity
-import com.minotawr.storyapp.ui.home.adapter.HomeAdapter
 import com.minotawr.storyapp.ui.home.adapter.HomeAdapterDelegate
+import com.minotawr.storyapp.ui.home.adapter.paging.HomePagingAdapter
 import com.minotawr.storyapp.ui.home.adapter.HomeViewHolder
+import com.minotawr.storyapp.ui.home.adapter.paging.LoadingStateAdapter
 import com.minotawr.storyapp.ui.map.MapsStoryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,12 +37,14 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
 
     override val viewModel: HomeViewModel by viewModel()
 
-    private val homeAdapter = HomeAdapter()
+    // private val homeAdapter = HomeAdapter()
+    private val homePagingAdapter = HomePagingAdapter()
 
     override fun setupPopup() {
         title = getString(R.string.app_name)
 
         setupView()
+        setupObserver()
         setupListener()
         loadData()
     }
@@ -88,12 +89,22 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
     private fun setupView() {
         toolbarBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity)
-            adapter = homeAdapter
+            adapter = homePagingAdapter.withLoadStateFooter(
+                footer = LoadingStateAdapter {
+                    homePagingAdapter.retry()
+                }
+            )
+        }
+    }
+
+    private fun setupObserver() {
+        viewModel.pagedStories.observe(this) { stories ->
+            homePagingAdapter.submitData(lifecycle, stories)
         }
     }
 
     private fun setupListener() {
-        homeAdapter.delegate = object: HomeAdapterDelegate {
+        homePagingAdapter.delegate = object: HomeAdapterDelegate {
             override fun onItemClick(holder: HomeViewHolder, data: Story) {
                 val intent = Intent(this@HomeActivity, StoryDetailActivity::class.java)
                 intent.putExtra(StoryDetailActivity.EXTRA_ID, data.id)
@@ -119,33 +130,33 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
     }
 
     private fun loadData() {
-        getStories()
+        // getStories()
     }
 
     private fun getStories() {
-        viewModel.getStories().observe(this) { resource ->
-            when (resource) {
-                is Resource.Loading -> {
-                    // do nothing
-                }
+        // viewModel.getStories().observe(this) { resource ->
+        //     when (resource) {
+        //         is Resource.Loading -> {
+        //             // do nothing
+        //         }
 
-                is Resource.Success -> {
-                    val data = resource.data
-                    if (data != null) {
-                        homeAdapter.setStories(data)
-                    }
-                }
+        //         is Resource.Success -> {
+        //             val data = resource.data
+        //             if (data != null) {
+        //                 homeAdapter.setStories(data)
+        //             }
+        //         }
 
-                is Resource.Unauthorized -> {
-                    showError("Unauthorized access, logging out")
-                    logout()
-                }
+        //         is Resource.Unauthorized -> {
+        //             showError("Unauthorized access, logging out")
+        //             logout()
+        //         }
 
-                is Resource.Failed -> {
-                    if (resource.message != null)
-                        showError(resource.message)
-                }
-            }
-        }
+        //         is Resource.Failed -> {
+        //             if (resource.message != null)
+        //                 showError(resource.message)
+        //         }
+        //     }
+        // }
     }
 }
