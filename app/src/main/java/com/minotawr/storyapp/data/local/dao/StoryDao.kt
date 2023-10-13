@@ -1,7 +1,7 @@
 package com.minotawr.storyapp.data.local.dao
 
 import androidx.lifecycle.LiveData
-import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -10,6 +10,9 @@ import com.minotawr.storyapp.data.local.entity.StoryEntity
 
 @Dao
 interface StoryDao {
+
+    @Query("SELECT * FROM story")
+    fun getAllPagingStory(): PagingSource<Int, StoryEntity>
 
     @Query("SELECT * FROM story")
     fun getAllStory(): LiveData<List<StoryEntity>>

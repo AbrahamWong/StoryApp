@@ -8,7 +8,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.google.android.material.snackbar.Snackbar
 import com.minotawr.storyapp.R
 import com.minotawr.storyapp.databinding.ActivityHomeBinding
@@ -17,10 +21,15 @@ import com.minotawr.storyapp.ui.add.AddStoryActivity
 import com.minotawr.storyapp.ui.base.BaseToolbarActivity
 import com.minotawr.storyapp.ui.detail.StoryDetailActivity
 import com.minotawr.storyapp.ui.home.adapter.HomeAdapterDelegate
-import com.minotawr.storyapp.ui.home.adapter.paging.HomePagingAdapter
 import com.minotawr.storyapp.ui.home.adapter.HomeViewHolder
+import com.minotawr.storyapp.ui.home.adapter.paging.HomePagingAdapter
 import com.minotawr.storyapp.ui.home.adapter.paging.LoadingStateAdapter
 import com.minotawr.storyapp.ui.map.MapsStoryActivity
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
@@ -31,6 +40,8 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
         if (result.resultCode == RESULT_OK) {
             Snackbar.make(toolbarBinding.root, "Story has been posted.", Snackbar.LENGTH_SHORT)
                 .show()
+
+            viewModel.hasNotScrolled.value = true
             loadData()
         }
     }
@@ -101,6 +112,30 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
         viewModel.pagedStories.observe(this) { stories ->
             homePagingAdapter.submitData(lifecycle, stories)
         }
+
+        toolbarBinding.recyclerView.addOnScrollListener(object: OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy != 0)
+                    viewModel.hasNotScrolled.value = false
+            }
+        })
+
+        val isNotLoading = homePagingAdapter.loadStateFlow
+            .distinctUntilChangedBy { it.source.refresh }
+            .map { it.source.refresh is LoadState.NotLoading }
+
+        val shouldScrollToTop = combine(
+            isNotLoading,
+            viewModel.hasNotScrolled,
+            Boolean::and
+        ).distinctUntilChanged()
+
+        lifecycleScope.launch {
+            shouldScrollToTop.collect { shouldScroll ->
+                if (shouldScroll)
+                    toolbarBinding.recyclerView.scrollToPosition(0)
+            }
+        }
     }
 
     private fun setupListener() {
@@ -130,33 +165,12 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
     }
 
     private fun loadData() {
-        // getStories()
+        getStories()
     }
 
     private fun getStories() {
-        // viewModel.getStories().observe(this) { resource ->
-        //     when (resource) {
-        //         is Resource.Loading -> {
-        //             // do nothing
-        //         }
-
-        //         is Resource.Success -> {
-        //             val data = resource.data
-        //             if (data != null) {
-        //                 homeAdapter.setStories(data)
-        //             }
-        //         }
-
-        //         is Resource.Unauthorized -> {
-        //             showError("Unauthorized access, logging out")
-        //             logout()
-        //         }
-
-        //         is Resource.Failed -> {
-        //             if (resource.message != null)
-        //                 showError(resource.message)
-        //         }
-        //     }
-        // }
+        viewModel.getPagedStories().observe(this) { pagingData ->
+            viewModel.pagedStories.postValue(pagingData)
+        }
     }
 }
