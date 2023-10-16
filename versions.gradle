@@ -13,4 +13,5 @@ ext.versions = [
         arch_testing_version    : "2.1.0",
         mockito_version         : "3.12.4",
         turbine_version         : "1.0.0",
+        maps_version            : "18.0.0",
 ]

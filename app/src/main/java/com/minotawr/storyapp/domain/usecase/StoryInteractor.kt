@@ -1,10 +1,6 @@
 package com.minotawr.storyapp.domain.usecase
 
-import androidx.paging.PagingData
-import com.minotawr.storyapp.data.remote.network.Resource
-import com.minotawr.storyapp.domain.model.Story
 import com.minotawr.storyapp.domain.repository.IStoryRepository
-import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 class StoryInteractor(
@@ -18,5 +14,5 @@ class StoryInteractor(
 
     override fun getStoryDetail(id: String) = repository.getStoryDetail(id)
 
-    override fun upload(image: File, description: String) = repository.upload(image, description)
+    override fun upload(image: File, description: String, latitude: Float?, longitude: Float?) = repository.upload(image, description, latitude, longitude)
 }

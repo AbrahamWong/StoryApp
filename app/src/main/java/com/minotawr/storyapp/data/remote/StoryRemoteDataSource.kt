@@ -12,5 +12,6 @@ class StoryRemoteDataSource(private val apiService: ApiService) : BaseRemoteData
 
     suspend fun getStoryDetail(id: String) = getResource { apiService.getStoryDetail(id) }
 
-    suspend fun upload(file: MultipartBody.Part, description: RequestBody) = getResource { apiService.uploadStory(file, description) }
+    suspend fun upload(file: MultipartBody.Part, description: RequestBody, latitude: Float?, longitude: Float?) =
+        getResource { apiService.uploadStory(file, description, latitude, longitude) }
 }

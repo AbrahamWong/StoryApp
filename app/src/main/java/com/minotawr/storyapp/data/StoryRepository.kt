@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
@@ -87,7 +88,7 @@ class StoryRepository(
 
         }.asFlow()
 
-    override fun upload(image: File, description: String): Flow<Resource<Any?>> =
+    override fun upload(image: File, description: String, latitude: Float?, longitude: Float?): Flow<Resource<Any?>> =
         object: NetworkBoundProcessResource<Any?, BaseStoryResponse>() {
             override suspend fun createCall(): Resource<BaseStoryResponse> {
                 val descriptionRequestBody = description.toRequestBody("text/plain".toMediaType())
@@ -99,7 +100,7 @@ class StoryRepository(
                     fileRequestBody
                 )
 
-                return storyRemoteDataSource.upload(fileMultipartBody, descriptionRequestBody)
+                return storyRemoteDataSource.upload(fileMultipartBody, descriptionRequestBody, latitude, longitude)
             }
 
             override suspend fun processCallResult(data: BaseStoryResponse): Any = data

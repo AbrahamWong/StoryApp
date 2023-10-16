@@ -14,6 +14,6 @@ interface StoryUseCase {
 
     fun getStoryDetail(id: String): Flow<Resource<Story?>>
 
-    fun upload(image: File, description: String): Flow<Resource<Any?>>
+    fun upload(image: File, description: String, latitude: Float?, longitude: Float?): Flow<Resource<Any?>>
 
 }

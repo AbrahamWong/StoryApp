@@ -25,4 +25,6 @@
     <string name="change_language">Change Language</string>
     <string name="retry">Try Again</string>
     <string name="open_map">Open Map</string>
+
+    <string name="checkbox_location">Send current location to story</string>
 </resources>
