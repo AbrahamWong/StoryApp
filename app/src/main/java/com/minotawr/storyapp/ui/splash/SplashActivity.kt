@@ -7,8 +7,6 @@ import com.minotawr.storyapp.databinding.ActivitySplashBinding
 import com.minotawr.storyapp.ui.base.BaseStoryActivity
 import com.minotawr.storyapp.ui.home.HomeActivity
 import com.minotawr.storyapp.ui.welcome.WelcomeActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
