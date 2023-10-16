@@ -169,8 +169,10 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
     }
 
     private fun getStories() {
-        viewModel.getPagedStories().observe(this) { pagingData ->
-            viewModel.pagedStories.postValue(pagingData)
+        lifecycleScope.launch {
+            viewModel.getPagedStories().collect { pagingData ->
+                viewModel.pagedStories.postValue(pagingData)
+            }
         }
     }
 }

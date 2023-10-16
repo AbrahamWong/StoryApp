@@ -10,4 +10,7 @@ ext.versions = [
         room_version            : "2.5.2",
         paging_version          : "3.1.0",
         room_paging_version     : "2.4.0-rc01",
+        arch_testing_version    : "2.1.0",
+        mockito_version         : "3.12.4",
+        turbine_version         : "1.0.0",
 ]

@@ -20,5 +20,5 @@ class HomeViewModel(
 
     val pagedStories = MutableLiveData<PagingData<Story>>().apply { postValue(null) }
 
-    fun getPagedStories() = storyUseCase.getPagedStories().asLiveData().cachedIn(viewModelScope)
+    fun getPagedStories() = storyUseCase.getPagedStories().cachedIn(viewModelScope)
 }
