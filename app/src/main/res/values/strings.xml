@@ -24,4 +24,5 @@
     <string name="welcome_message">Check other\'s success stories in learning here!</string>
     <string name="change_language">Change Language</string>
     <string name="retry">Try Again</string>
+    <string name="open_map">Open Map</string>
 </resources>

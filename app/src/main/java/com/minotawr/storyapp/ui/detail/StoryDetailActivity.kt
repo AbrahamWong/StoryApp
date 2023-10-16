@@ -23,12 +23,7 @@ class StoryDetailActivity : BaseToolbarActivity<ActivityStoryDetailBinding>() {
     }
 
     override fun setupPopup() {
-        setupView()
         loadData()
-    }
-
-    private fun setupView() {
-        // TODO("Not yet implemented")
     }
 
     private fun loadData() {
@@ -40,9 +35,7 @@ class StoryDetailActivity : BaseToolbarActivity<ActivityStoryDetailBinding>() {
     private fun getStoryDetail(id: String) {
         viewModel.getStoryDetail(id).observe(this) { resource ->
             when (resource) {
-                is Resource.Loading -> {
-                    // do nothing
-                }
+                is Resource.Loading -> {  }
 
                 is Resource.Unauthorized -> {
                     if (resource.message != null) {

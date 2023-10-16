@@ -47,10 +47,6 @@ class HomeViewModelTest {
         viewModel = HomeViewModel(authUseCase, storyUseCase)
     }
 
-    // Ketika berhasil memuat data cerita.
-    //      Memastikan data tidak null.
-    //      Memastikan jumlah data sesuai dengan yang diharapkan.
-    //      Memastikan data pertama yang dikembalikan sesuai.
     @Test
     fun `when successfully Get all story should not null or empty`() = runTest {
         val dummyData = DataDummy.generateDummyUseCaseData()
@@ -89,8 +85,6 @@ class HomeViewModelTest {
         }
     }
 
-    // Ketika tidak ada data cerita.
-    //      Memastikan jumlah data yang dikembalikan nol.
     @Test
     fun `when Get all story is empty should return empty`() = runTest {
         val expectedStories: Flow<PagingData<Story>> = flow {

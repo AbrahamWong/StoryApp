@@ -1,22 +1,11 @@
 package com.minotawr.storyapp.ui.map
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -49,7 +38,6 @@ class MapsStoryActivity : BaseToolbarActivity<ActivityMapsStoryBinding>(), OnMap
         }
 
     override fun setupPopup() {
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -59,11 +47,6 @@ class MapsStoryActivity : BaseToolbarActivity<ActivityMapsStoryBinding>(), OnMap
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        // val sydney = LatLng(-34.0, 151.0)
-        // mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
         mMap.uiSettings.apply {
             isZoomGesturesEnabled = true
@@ -99,9 +82,7 @@ class MapsStoryActivity : BaseToolbarActivity<ActivityMapsStoryBinding>(), OnMap
     private fun getStories() {
         viewModel.getStories().observe(this) { resource ->
             when (resource) {
-                is Resource.Loading -> {
-                    // do nothing
-                }
+                is Resource.Loading -> {  }
 
                 is Resource.Failed -> {
                     if (resource.message != null)
@@ -127,8 +108,6 @@ class MapsStoryActivity : BaseToolbarActivity<ActivityMapsStoryBinding>(), OnMap
         storyList.forEach { story ->
             if (story.latitude != null && story.longitude != null) {
                 val latLng = LatLng(story.latitude, story.longitude)
-
-                // TODO: Find a way to show story image as circular marker
 
                 mMap.addMarker(
                     MarkerOptions()

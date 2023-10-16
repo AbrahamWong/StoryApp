@@ -25,4 +25,5 @@
     <string name="welcome_message">Lihat cerita sukses belajar orang-orang disini!</string>
     <string name="change_language">Ubah Bahasa</string>
     <string name="retry">Coba Lagi</string>
+    <string name="open_map">Buka Peta</string>
 </resources>

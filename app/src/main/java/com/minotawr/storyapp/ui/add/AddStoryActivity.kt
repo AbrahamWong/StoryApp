@@ -103,9 +103,7 @@ class AddStoryActivity : BaseToolbarActivity<ActivityAddStoryBinding>() {
     private fun upload(file: File, description: String) {
         viewModel.upload(file, description).observe(this) { resource ->
             when (resource) {
-                is Resource.Loading -> {
-                    // do nothing
-                }
+                is Resource.Loading -> {  }
 
                 is Resource.Unauthorized -> {
                     hideLoading()

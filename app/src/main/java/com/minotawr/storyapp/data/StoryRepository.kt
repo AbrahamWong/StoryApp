@@ -60,7 +60,6 @@ class StoryRepository(
             config = PagingConfig(pageSize = 5, initialLoadSize = 10),
             remoteMediator = storyRemoteMediator,
             pagingSourceFactory = {
-                // storyPagingSource
                 storyDao.getAllPagingStory()
             }
         ).flow.map { pagingData ->
@@ -70,7 +69,6 @@ class StoryRepository(
     override fun getStoryDetail(id: String): Flow<Resource<Story?>> =
         object : NetworkBoundResource<Story?, StoryDetailResponse>() {
             override fun getCached(): Flow<Story?> =
-                // storyDetailLocalDataSource.get(id).map { StoryMapper.storyEntityToModel(it) }
                 storyDao.getStoryDetail(id).asFlow().map { StoryMapper.storyEntityToModel(it) }
 
             override fun shouldUseRemoteData(cachedData: Story?): Boolean = cachedData == null

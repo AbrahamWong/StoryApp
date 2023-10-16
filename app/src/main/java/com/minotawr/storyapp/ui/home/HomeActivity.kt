@@ -48,7 +48,6 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
 
     override val viewModel: HomeViewModel by viewModel()
 
-    // private val homeAdapter = HomeAdapter()
     private val homePagingAdapter = HomePagingAdapter()
 
     override fun setupPopup() {
@@ -90,6 +89,11 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
             R.id.action_language -> {
                 val settingIntent = Intent(android.provider.Settings.ACTION_LOCALE_SETTINGS)
                 startActivity(settingIntent)
+                true
+            }
+
+            R.id.action_map -> {
+                startActivity(Intent(this, MapsStoryActivity::class.java))
                 true
             }
 
@@ -157,10 +161,6 @@ class HomeActivity : BaseToolbarActivity<ActivityHomeBinding>() {
 
         toolbarBinding.fabAdd.setOnClickListener {
             storyLauncher.launch(Intent(this, AddStoryActivity::class.java))
-        }
-
-        toolbarBinding.fabMap.setOnClickListener {
-            startActivity(Intent(this, MapsStoryActivity::class.java))
         }
     }
 

@@ -31,7 +31,6 @@ class StoryRemoteMediator(
     override suspend fun initialize(): InitializeAction = InitializeAction.LAUNCH_INITIAL_REFRESH
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, StoryEntity>): MediatorResult {
-        // val page = INITIAL_PAGE_INDEX
         val page = when (loadType) {
             LoadType.REFRESH -> {
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)

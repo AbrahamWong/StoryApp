@@ -20,13 +20,8 @@ class RegisterActivity : BaseStoryActivity<ActivityRegisterBinding>() {
     private val viewModel: RegisterViewModel by viewModel()
 
     override fun setup() {
-        setupView()
         setupObserver()
         setupListener()
-    }
-
-    private fun setupView() {
-        // TODO: Setup animation
     }
 
     private fun setupObserver() {
